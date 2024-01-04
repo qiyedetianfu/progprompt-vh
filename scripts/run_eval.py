@@ -21,14 +21,14 @@ sys.path.append("virtualhome")
 
 import argparse
 import os
-import os.path as osp
+import os.path as osp  #路径、环境等
 import random
 
 from virtualhome.simulation.unity_simulator.comm_unity import UnityCommunication
 from virtualhome.demo.utils_demo import *
 
 import openai
-import json
+import json  #类似xml的数据交换格式
 import time
 
 from utils_execute import *
