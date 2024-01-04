@@ -22,7 +22,7 @@ import time
 import re #正则化模块
 
 from utils_aug_env import get_obj_ids_for_adding_states, add_additional_obj_states
-
+#三个函数，LM，get_current_state_prompt()，run_execution(args, comm, test_tasks, gen_plan, log_file)
 def LM(prompt, 
        gpt_version,
        max_tokens=128, 
