@@ -19,7 +19,7 @@ from virtualhome.simulation.evolving_graph.scripts import parse_script_line, Scr
 from virtualhome.simulation.evolving_graph.execution import ScriptExecutor
 from virtualhome.simulation.evolving_graph.environment import EnvironmentGraph
 import time
-import re
+import re #正则化模块
 
 from utils_aug_env import get_obj_ids_for_adding_states, add_additional_obj_states
 
