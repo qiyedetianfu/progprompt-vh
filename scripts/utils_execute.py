@@ -25,11 +25,11 @@ from utils_aug_env import get_obj_ids_for_adding_states, add_additional_obj_stat
 #三个函数，LM，get_current_state_prompt()，run_execution(args, comm, test_tasks, gen_plan, log_file)
 def LM(prompt, 
        gpt_version,
-       max_tokens=128, 
-       temperature=0, 
-       stop=None, 
-       logprobs=1, 
-       frequency_penalty=0):
+       max_tokens=128, #生成结果时的最大单词数，不能超过模型的上下文长度，可以把结果内容复制到 OpenAI Tokenizer 来了解 tokens 的计数方式
+       temperature=0,  #temperature设为0，最准确，无多样化可能，如果希望结果更有创意可以尝试 0.9，或者希望有固定结果可以尝试 0.0 .
+       stop=None, #停止字符，最大长度为 4 的字符串列表，一旦生成的 tokens 包含其中的内容，将停止生成并返回结果
+       logprobs=1, #logprobs=10告诉生成器返回生成文本中前10个token的概率值和对应的token
+       frequency_penalty=0):#重复度惩罚因子，越小重复度越低
     
     ## function to query LM ##
     # you may adjust the genration parameters as needed
@@ -43,7 +43,7 @@ def LM(prompt,
                                         logprobs=logprobs, 
                                         frequency_penalty = frequency_penalty)
 
-    return response, response["choices"][0]["text"].strip()
+    return response, response["choices"][0]["text"].strip()#Python strip() 方法用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。
 
 def get_current_state_prompt():
     ## fixed function to define "PROMPT for state check"
