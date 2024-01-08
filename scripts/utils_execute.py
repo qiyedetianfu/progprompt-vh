@@ -51,7 +51,7 @@ def get_current_state_prompt():
     objs  = ['microwave', 'book', 'lightswitch', 'bookshelf', 'cereal']
     state, asserts = current_state_prompt = current_state_prompt.split('\n\n')
     state = state.split(',')
-    state = "You see: " +  ', '.join([i.strip() for i in state if any(element in i for element in objs)])
+    state = "You see: " +  ', '.join([i.strip() for i in state if any(element in i for element in objs)])#所有objs里有的对象的状态
     current_state_prompt = f"{state}\n\n{asserts}"
     return current_state_prompt
 
@@ -65,13 +65,13 @@ def run_execution(args, comm, test_tasks, gen_plan, log_file):
         comm.reset(args.env_id)
         comm.add_character('Chars/Male2', initial_room='kitchen')
 
-        _, graph = comm.environment_graph()
+        _, graph = comm.environment_graph()#返回两个元素的元组，我们只关心第二个元素，存在graph中
         _, cc = comm.camera_count()
         initial_states.append(graph)
 
-        env_graph = EnvironmentGraph(graph)
-        name_equivalence = utils.load_name_equivalence()
-        executor = ScriptExecutor(env_graph, name_equivalence)
+        env_graph = EnvironmentGraph(graph)#虚拟环境
+        name_equivalence = utils.load_name_equivalence()#虚拟环境
+        executor = ScriptExecutor(env_graph, name_equivalence)#虚拟环境
 
         ## get agent's initial state ##
         agent = [n['id'] for n in graph["nodes"] if n['class_name'] == 'character'][0]
